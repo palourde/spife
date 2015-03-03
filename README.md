@@ -18,7 +18,7 @@ Usage of spife:
   -bump-level="patch": Version level to bump the cookbook
   -git-push=true: Whether or not changes should be committed.
   -git-remotes="upstream, origin": Comma separated list of Git remotes
-  -path="": Full or relative path to the configuration file. REQUIRED.
+  -path="": Full or relative path to the cookbook directory. REQUIRED.
 ```
 
 ### Example
