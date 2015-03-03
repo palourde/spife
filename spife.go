@@ -62,7 +62,7 @@ func gitCommit(path, bumpLevel, newVersion, gitRemotes string, gitPush bool) {
 		// git commit
 		fmt.Println("Committing changes")
 		commitMessage := fmt.Sprintf("\"%s bump to version %s\"", bumpLevel, newVersion)
-		_, err := exec.Command("git", "commit", "-m", commitMessage).Output()
+		_, err := exec.Command("git", "commit", "-m", commitMessage, "-n").Output()
 		if err != nil {
 			log.Fatal(err)
 		}
@@ -161,7 +161,7 @@ func metadata(path, bumpLevel string) string {
 }
 
 func main() {
-	path := flag.String("path", "", "Full or relative path to the configuration file. REQUIRED.")
+	path := flag.String("path", "", "Full or relative path to the cookbook directory. REQUIRED.")
 	bumpLevel := flag.String("bump-level", "patch", "Version level to bump the cookbook")
 	gitPush := flag.Bool("git-push", true, "Whether or not changes should be committed.")
 	gitRemotes := flag.String("git-remotes", "upstream, origin", "Comma separated list of Git remotes")
