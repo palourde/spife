@@ -61,7 +61,7 @@ func gitCommit(path, bumpLevel, newVersion, gitRemotes string, gitPush bool) {
 
 		// git commit
 		fmt.Println("Committing changes")
-		commitMessage := fmt.Sprintf("\"%s bump to version %s\"", bumpLevel, newVersion)
+		commitMessage := fmt.Sprintf("%s bump to version %s", bumpLevel, newVersion)
 		_, err := exec.Command("git", "commit", "-m", commitMessage, "-n").Output()
 		if err != nil {
 			log.Fatal(err)
@@ -69,7 +69,7 @@ func gitCommit(path, bumpLevel, newVersion, gitRemotes string, gitPush bool) {
 
 		// git tag
 		fmt.Printf("Adding tag '%s'\n", newVersion)
-		tagMessage := fmt.Sprintf("\"%s\"", newVersion)
+		tagMessage := fmt.Sprintf("%s", newVersion)
 		_, err = exec.Command("git", "tag", "-a", newVersion, "-m", tagMessage).Output()
 		if err != nil {
 			log.Fatal(err)
