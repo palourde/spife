@@ -80,15 +80,15 @@ func gitCommit(path, bumpLevel, newVersion, gitRemotes string, gitPush bool, git
 		for i := range remotes {
 			remote := strings.TrimSpace(remotes[i])
 
-      if gitUseFollowTags {
-			  fmt.Printf("Pushing changes to '%s'\n", remote)
-			  _, err = exec.Command("git", "push", remote, "master", "--follow-tags").Output()
-      } else {
-        fmt.Printf("Pushing changes to '%s'\n", remote)
-        _, err = exec.Command("git", "push", remote, "master").Output()
-        fmt.Printf("Pushing tags to '%s'\n", remote)
-        _, err = exec.Command("git", "push", remote, "master", "--tags").Output()
-      }
+			if gitUseFollowTags {
+				fmt.Printf("Pushing changes to '%s'\n", remote)
+				_, err = exec.Command("git", "push", remote, "master", "--follow-tags").Output()
+			} else {
+				fmt.Printf("Pushing changes to '%s'\n", remote)
+				_, err = exec.Command("git", "push", remote, "master").Output()
+				fmt.Printf("Pushing tags to '%s'\n", remote)
+				_, err = exec.Command("git", "push", remote, "master", "--tags").Output()
+			}
 
 			if err != nil {
 				log.Fatal(err)
@@ -173,7 +173,7 @@ func main() {
 	path := flag.String("path", "", "Full or relative path to the cookbook directory. REQUIRED.")
 	bumpLevel := flag.String("bump-level", "patch", "Version level to bump the cookbook")
 	gitPush := flag.Bool("git-push", true, "Whether or not changes should be committed.")
-  gitUseFollowTags := flag.Bool("git-use-follow-tags", true, "Use the directive --follow-tags.")
+	gitUseFollowTags := flag.Bool("git-use-follow-tags", true, "Use the directive --follow-tags.")
 	gitRemotes := flag.String("git-remotes", "upstream, origin", "Comma separated list of Git remotes")
 	flag.Parse()
 
