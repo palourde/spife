@@ -173,7 +173,7 @@ func main() {
 	path := flag.String("path", "", "Full or relative path to the cookbook directory. REQUIRED.")
 	bumpLevel := flag.String("bump-level", "patch", "Version level to bump the cookbook")
 	gitPush := flag.Bool("git-push", true, "Whether or not changes should be committed.")
-	gitUseFollowTags := flag.Bool("git-use-follow-tags", true, "Use the directive --follow-tags.")
+	gitUseFollowTags := flag.Bool("git-use-follow-tags", true, "Use the Git directive --follow-tags.")
 	gitRemotes := flag.String("git-remotes", "upstream, origin", "Comma separated list of Git remotes")
 	flag.Parse()
 

@@ -18,6 +18,7 @@ Usage of spife:
   -bump-level="patch": Version level to bump the cookbook
   -git-push=true: Whether or not changes should be committed.
   -git-remotes="upstream, origin": Comma separated list of Git remotes
+  -git-use-follow-tags=true: Use the Git directive --follow-tags.
   -path="": Full or relative path to the cookbook directory. REQUIRED.
 ```
 
