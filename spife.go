@@ -131,6 +131,7 @@ func metadata(path, bumpLevel string) string {
 
 	for i, line := range lines {
 		if strings.Contains(line, "version") {
+			line = strings.Replace(line, "\"", "'", 2)
 			lineArray := strings.Split(line, "'")
 			fmt.Printf("Current version: %s\n", lineArray[1])
 
