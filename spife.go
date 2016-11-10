@@ -7,6 +7,7 @@ import (
 	"log"
 	"os"
 	"os/exec"
+	"regexp"
 	"strconv"
 	"strings"
 )
@@ -130,7 +131,8 @@ func metadata(path, bumpLevel string) string {
 	newVersion := Version{}
 
 	for i, line := range lines {
-		if strings.Contains(line, "version") {
+		matchedVersionPattern, _ := regexp.MatchString("^( |\t)*version( |\t)+(\\'|\")(.+)(\\'|\")", line)
+		if matchedVersionPattern {
 			line = strings.Replace(line, "\"", "'", 2)
 			lineArray := strings.Split(line, "'")
 			fmt.Printf("Current version: %s\n", lineArray[1])
@@ -149,6 +151,7 @@ func metadata(path, bumpLevel string) string {
 			fmt.Printf("New version: %s\n", lineArray[1])
 
 			lines[i] = strings.Join(lineArray, "'")
+			break
 		}
 	}
 
